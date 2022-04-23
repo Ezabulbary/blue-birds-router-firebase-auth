@@ -1,4 +1,4 @@
-.header {
+.header{
     text-align: center;
     height: 100px;
     background-color: #1C2B35;
@@ -11,6 +11,7 @@
     color: white;
 }
 
-.header p {
+.header p{
     margin: 0;
 }
+

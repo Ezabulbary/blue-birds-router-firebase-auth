@@ -1,6 +1,6 @@
 
 import { faFaceSmile, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 import React, { useEffect, useState } from 'react';
 import './Cart.css';
 
@@ -8,17 +8,17 @@ const Cart = ({ cart, clickDeleteToCart }) => {
     const [addProduct, setAddProduct] = useState(false);
     const [freeProducts, getFreeProducts] = useState({});
 
-    const getOneForMe = () => {
+    const getOneForMe = () =>{
         const randomNumber = Math.floor(Math.random() * cart.length);
         const item = cart[randomNumber];
         getFreeProducts(item);
     }
 
-    useEffect(() => {
-        if (cart.length > 0) {
+    useEffect( () => {
+        if(cart.length > 0){
             setAddProduct(true);
         }
-        else {
+        else{
             setAddProduct(false);
         }
     }, [cart])
@@ -26,7 +26,10 @@ const Cart = ({ cart, clickDeleteToCart }) => {
     return (
         <div className='cart'>
             <div className="top-bar">
-                <h3>Selected Products</h3>
+                <h3>Order Summary</h3>
+                <button className='delete' onClick={clickDeleteToCart}>
+                    <FontAwesomeIcon icon={faTrash} />
+                </button>
             </div>
             {
                 cart.map((item, id) => (
@@ -38,19 +41,15 @@ const Cart = ({ cart, clickDeleteToCart }) => {
                         />
                         <div className='product-info'>
                             <p>{item.name}</p>
+                            <p>Price: ${item.price}</p>
+                            <p>Quantity: {item.quantity}</p>
                         </div>
-                        <button className='delete'>
-                            <FontAwesomeIcon icon={faTrash} />
-                        </button>
                     </div>
-                ))
+                ))  
             }
             <div>
-                <button className={addProduct ? "get-one-btn" : "get-one-btn-disable"} onClick={getOneForMe} disabled={!addProduct}>Get One For Me
+                <button className={ addProduct ? "get-one-btn" : "get-one-btn-disable"} onClick={getOneForMe} disabled={!addProduct}>Get One For Me
                     <FontAwesomeIcon icon={faFaceSmile} />
-                </button>
-                <button className={addProduct ? "all-delete" : "all-delete-disable"} onClick={clickDeleteToCart} disabled={!addProduct}>Clear All Products
-                    <FontAwesomeIcon icon={faTrash} />
                 </button>
                 {Object.keys(freeProducts).length > 0 && <div className="cart-item">
                     <img

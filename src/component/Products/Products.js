@@ -5,20 +5,19 @@ import './Products.css';
 
 const Products = (props) => {
     const { data, handleAddToCart } = props;
-    const { pairImage, name, price, sideImage } = data;
+    const { pairImage, name, price, sideImage} = data;
     const [flipImage, setFlipImage] = useState(false);
-    
     return (
-        <div
-            className='product'
-            onMouseEnter={() => setFlipImage(true)}
-            onMouseLeave={() => setFlipImage(false)}
+        <div 
+        className='product' 
+        onMouseEnter={() => setFlipImage(true)} 
+        onMouseLeave={() => setFlipImage(false)}
         >
             <div>
-                <img
-                    className="product-img"
-                    src={flipImage ? sideImage : pairImage}
-                    alt=""
+                <img 
+                className="product-img" 
+                src={flipImage ? sideImage : pairImage } 
+                alt="" 
                 />
             </div>
             <div className='product-info'>
@@ -27,7 +26,7 @@ const Products = (props) => {
             </div>
             <div className='product-btn'>
                 <button onClick={() => handleAddToCart(data)}>Add To Cart
-                    <FontAwesomeIcon icon={faShoppingCart} />
+                <FontAwesomeIcon icon={faShoppingCart} />
                 </button>
             </div>
         </div>

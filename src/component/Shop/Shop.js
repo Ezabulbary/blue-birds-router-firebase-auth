@@ -16,11 +16,11 @@ const Shop = () => {
     const handleAddToCart = (selectedProduct) => {
         let newCarts = [];
         const exist = cart.find(product => product.id === selectedProduct.id);
-        if (!exist) {
+        if(!exist){
             selectedProduct.quantity = 1;
             newCarts = [...cart, selectedProduct];
         }
-        else {
+        else{
             const rest = cart.filter(product => product.id !== selectedProduct.id);
             selectedProduct.quantity = selectedProduct.quantity + 1;
             newCarts = [...rest, selectedProduct];
@@ -37,11 +37,11 @@ const Shop = () => {
         <div className='shop-container'>
             <div className="product-container">
                 {
-                    products.map(product => <Products
+                    products.map(product => <Products 
                         key={product.id}
                         data={product}
                         handleAddToCart={handleAddToCart}
-                    ></Products>)
+                        ></Products>)
                 }
             </div>
             <div className="cart-container">

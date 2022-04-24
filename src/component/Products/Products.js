@@ -1,34 +1,24 @@
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
+import React from 'react';
 import './Products.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
-const Products = (props) => {
-    const { data, handleAddToCart } = props;
-    const { pairImage, name, price, sideImage} = data;
-    const [flipImage, setFlipImage] = useState(false);
+const Products = ({ product, handleAddToCart }) => {
+	// const {product, handleAddToCart} = props
+    const { name, img, seller, price, ratings} = product;
     return (
-        <div 
-        className='product' 
-        onMouseEnter={() => setFlipImage(true)} 
-        onMouseLeave={() => setFlipImage(false)}
-        >
-            <div>
-                <img 
-                className="product-img" 
-                src={flipImage ? sideImage : pairImage } 
-                alt="" 
-                />
-            </div>
+        <div className='product'>
+            <img src={img} alt="" />
             <div className='product-info'>
-                <h2>Name: {name}</h2>
+                <p className='product-name'>{name}</p>
                 <p>Price: ${price}</p>
+                <p><small>Manufacturer: {seller}</small></p>
+                <p><small>Rating: {ratings} stars</small></p>
             </div>
-            <div className='product-btn'>
-                <button onClick={() => handleAddToCart(data)}>Add To Cart
-                <FontAwesomeIcon icon={faShoppingCart} />
-                </button>
-            </div>
+			<button onClick={ () => handleAddToCart(product)} className='btn-cart'>
+            	<p>Add to Cart</p>
+				<FontAwesomeIcon icon={faShoppingCart} />
+            </button>
         </div>
     );
 };

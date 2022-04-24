@@ -5,6 +5,7 @@ import Home from './component/Home/Home';
 import About from './component/About/About';
 import NotFound from './component/NotFound/NotFound';
 import Orders from './component/Orders/Orders';
+import Login from './component/Login/Login';
 
 function App() {
   return (
@@ -12,9 +13,11 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
+        <Route path='/:shop' element={<Shop></Shop>}></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/shop' element={<Shop></Shop>}></Route>
-        <Route path='/orders' element={<Orders></Orders>}></Route>
+        <Route path='/order' element={<Orders></Orders>}></Route>
+        <Route path='/login' element={<Login></Login>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
     </div>

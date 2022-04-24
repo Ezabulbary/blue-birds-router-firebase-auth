@@ -1,33 +1,12 @@
-
-import React, { useState, useEffect } from 'react';
-import { addToDb, getStoredCart } from '../../utilities/fakedb';
+import useCart from '../../hooks/useCart';
+import useProducts from '../../hooks/useProducts';
+import { addToDb } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Products from '../Products/Products';
-import './Shop.css';
 
 const Shop = () => {
-    const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
-
-    useEffect( () => {
-        fetch('products.json')
-        .then(res => res.json())
-            .then(data => setProducts(data))
-    }, []);
-
-    useEffect( () => {
-        const storedCart = getStoredCart();
-        const savedCart = [];
-        for (const id in storedCart) {
-            const addedProduct = products.find(product => product.id === id);
-            if(addedProduct){
-                const quantity = storedCart[id];
-                addedProduct.quantity = quantity;
-                savedCart.push(addedProduct);
-            }
-        }
-        setCart(savedCart);
-    },[products])
+    const [products, setProducts] = useProducts();
+    const [cart, setCart] = useCart(products)
 
     const handleAddToCart = (selectedProduct) => {
         console.log(selectedProduct)
@@ -48,8 +27,8 @@ const Shop = () => {
     }
 
     return (
-        <div className="shop-container">
-            <div className="product-container">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 m-6 order-2 md:order-1">
                 {
                     products.map(product => <Products 
                         key={product.id} 
@@ -58,10 +37,11 @@ const Shop = () => {
                         ></Products>)
                 }
             </div>
-            <div className="card-container">
+            <div className="bg-[#FFE0B3] text-center p-10 order-1 md:order-2">
                 <Cart cart={cart}></Cart>
             </div>
         </div>
+        
     );
 };
 

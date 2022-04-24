@@ -7,6 +7,7 @@ function CustomLink({ children, to, ...props }) {
 
     return (
         <Link
+            className={'sm:flex items-center'}
             style={{ color: match ? "green" : "white" }}
             to={to}
             {...props}

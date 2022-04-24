@@ -2,7 +2,7 @@ import React from 'react';
 
 const Login = () => {
     return (
-        <div className='border-solid border-2 border-black rounded-lg bg-gray-300 mx-44 my-20 p-20'>
+        <div className='border-solid border-2 border-black rounded-lg bg-gray-300 m-8 md:mx-44 md:my-20 p-20'>
             <p className='font-bold text-xl m-2'>Enter Email</p>
             <input className='rounded p-2 w-full' type="email" placeholder='Type your email' />
             <p className='font-bold text-xl m-2'>Enter Password</p>

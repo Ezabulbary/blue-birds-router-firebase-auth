@@ -1,7 +1,7 @@
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
 import { removeFromDb } from '../../utilities/fakedb';
@@ -11,6 +11,7 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 const Orders = () => {
     const [products, setProducts] = useProducts();
     const [cart, setCart] = useCart(products);
+    const navigate = useNavigate();
 
     const orderRemoveBtn = product => {
         const rest = cart.filter(pd => pd.id !== product.id);
@@ -32,12 +33,10 @@ const Orders = () => {
                 <Cart
                     cart={cart}
                 >
-                    <Link to='/login'>
-                        <button className='text-white w-11/12 bg-yellow-500 border-solid border-2 border-[#95A0A7] rounded-md flex items-center justify-evenly my-3 mx-auto py-2'>
-                            <p>Order Conform</p>
-                            <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
-                        </button>
-                    </Link>
+                    <button onClick={()=>navigate('/shipment')} className='text-white w-11/12 bg-yellow-500 border-solid border-2 border-[#95A0A7] rounded-md flex items-center justify-evenly my-3 mx-auto py-2'>
+                        <p>Order Conform</p>
+                        <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
+                    </button>
                 </Cart>
             </div>
         </div>
